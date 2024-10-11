@@ -13,7 +13,7 @@ pipeline{
                         withCredentials([usernamePassword(credentialsId:"dockerhub",passwordVariable:"dockerhubpass",usernameVariable:"dockerhubuser")]){
                             sh "docker tag react-app-test-deploy ${env.dockerhubuser}/dev:latest "
 			    sh "docker login -u ${env.dockerhubuser} -p ${env.dockerhubpass}"
-			    sh "docker push ${env.dockerhubuser}/dev:latest"
+			    sh "docker push ${env.dockerhubuser}/dev:latest"}
                     } else if (env.GIT_BRANCH == 'origin/master') {
 			git url:"https://github.com/saravjeetsingh9255/Project-Guvi-React-application.git",branch: "master"
                         // Build Docker image
@@ -23,7 +23,7 @@ pipeline{
                         withCredentials([usernamePassword(credentialsId:"dockerhub",passwordVariable:"dockerhubpass",usernameVariable:"dockerhubuser")]){
                             sh "docker tag react-app-test-deploy ${env.dockerhubuser}/prod:latest "
 			    sh "docker login -u ${env.dockerhubuser} -p ${env.dockerhubpass}"
-			    sh "docker push ${env.dockerhubuser}/prod:latest"
+			    sh "docker push ${env.dockerhubuser}/prod:latest"}
                     }
                 }
             }
